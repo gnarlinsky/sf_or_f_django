@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 style="text-align: center">Books</h1>
+        <div style="text-align: left; margin-left:100px;">
+            {% for book in object_list %}
+                <span class="book" style="font-weight: bold"> {{ book }} </span>
+                <br>
+                <span style="color:#b2403c">
+                F votes:    {{ book.votes_f }}
+                            ({{ book.get_percentage_f_votes }}%)
+                </span>
+                &nbsp; 
+                <span style="color:#56735f">
+                SF votes:   {{ book.votes_sf }}
+                            ({{ book.get_percentage_sf_votes }}%);
+                </span>
+                <br><br>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+* Clean up requirements files
+* See TODOs in the code
+* Design documentation
+* Developer documentation
+* shell_plus?
+* start getting the documentation below into Sphinx
+* create Issues
+* see email for more stuff
+
+
+Some useful stuff/documentation/tutorial fodder
+===============================================
+Create superuser fast:
+$ python manage.py createsuperuser --username=joe --email=joe@example.com
+
+
+Design documentation, etc.
+==========================
+* Will be customizing admin interface for both end-users and admin-users. So, taking
+the example of change form showing book info: a regular site user will not be
+able to edit author, title, etc., but admin user  *would* see those fields
+as editable (though they of course would not see the vote numbers fields as
+editable)

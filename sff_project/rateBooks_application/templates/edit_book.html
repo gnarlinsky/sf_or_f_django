@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div style="text-align: center">
+        <h1>Add a book</h1>
+
+        <form action="{% url "books-new" %}" method="POST" class="form">
+            {% csrf_token %}
+            <ul style="list-style-type: none; text-align:right; 
+                       margin-right:200px">
+                {{ form.as_ul }}
+            </ul>
+            <input id = "save_book" type="submit" value="Save" />
+        </form>
+
+    </div>
+{% endblock %}
