@@ -4,12 +4,16 @@ class Book(models.Model):
     # TODO: best practices, etc for arguments passed to each kind of Field
 
     # basic info
-    title   = models.CharField(max_length=255)
-    author  = models.CharField(max_length=255)
+    # (null=False sets field to NOT NULL; blank=False means this field
+    #   is required in forms. So the combo of null=True, blank=False
+    #   means that the field should be required in forms, but not if
+    #   the object is created programmatically/in the db, etc.
+    title   = models.CharField(max_length=255, blank=False, null=False, unique=True)
+    author  = models.CharField(max_length=255, blank=False, null=False)
 
     # number of votes in each category
-    votes_sf    = models.IntegerField()
-    votes_f     = models.IntegerField()
+    votes_sf    = models.IntegerField(null=True)
+    votes_f     = models.IntegerField(null=True)
 
     ###########################################################################
     # "I would opt for the 0..1 range simply because if you store e.g. 20% as
