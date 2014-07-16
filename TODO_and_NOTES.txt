@@ -8,7 +8,6 @@
 * see email for more stuff
 * tweak debug-toolbar settings in settings.py
 * tweak django-suit settings in settings.py
-* so I feel increasingly weird about just using the admin interface.... so, following http://www.tryolabs.com/Blog/2012/06/18/django-administration-interface-non-staff-users/, how about *subclassing* the admin site!
 
 
 Some useful stuff/documentation/tutorial fodder
@@ -19,8 +18,3 @@ $ python manage.py createsuperuser --username=joe --email=joe@example.com
 
 Design documentation, etc.
 ==========================
-* Will be customizing admin interface for both end-users and admin-users. So, taking
-the example of change form showing book info: a regular site user will not be
-able to edit author, title, etc., but admin user  *would* see those fields
-as editable (though they of course would not see the vote numbers fields as
-editable)
