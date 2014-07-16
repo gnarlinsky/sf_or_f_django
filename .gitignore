@@ -1,3 +1,4 @@
 .DS_Store
 activate_ve
+*/*.pyc
 *.pyc
