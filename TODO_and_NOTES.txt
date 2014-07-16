@@ -6,6 +6,9 @@
 * start getting the documentation below into Sphinx
 * create Issues
 * see email for more stuff
+* tweak debug-toolbar settings in settings.py
+* tweak django-suit settings in settings.py
+* so I feel increasingly weird about just using the admin interface.... so, following http://www.tryolabs.com/Blog/2012/06/18/django-administration-interface-non-staff-users/, how about *subclassing* the admin site!
 
 
 Some useful stuff/documentation/tutorial fodder
