@@ -1,22 +1,69 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
-    <h1 style="text-align: center">Books</h1>
-        <div style="text-align: left; margin-left:100px;">
+    <div style="margin-top: 30px;margin-right:auto;width:600px">
+            <div style="float:left; margin-right:10px; border:1px white solid">
+            <img src="{% static 'images/sf_book_cover.jpg' %}" height=200px>       
+            </div>
+            <div style="float:left;">
+            <img src="{% static 'images/fantasy_book_cover.jpg' %}" height=190px>
+            </div>
+            <div style="font-size:36px; font-weight:bold;
+            text-align: center; padding:10px;">Science Fiction<br>or<br>Fantasy?
+            </div>
+    </div>  
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align:right;color:#00bc8c; border-bottom:1px
+                #00bc8c solid; width:100px">SF Votes</th>
+                <th></th>
+                <th style="text-align:right;color:#217dbb; border-bottom:1px
+                #217dbb solid; width:100px">Fantasy Votes</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for book in object_list %}
-                <span class="book" style="font-weight: bold"> {{ book }} </span>
-                <br>
-                <span style="color:#b2403c">
-                F votes:    {{ book.votes_f }}
-                            ({{ book.get_percentage_f_votes }}%)
-                </span>
-                &nbsp; 
-                <span style="color:#56735f">
-                SF votes:   {{ book.votes_sf }}
-                            ({{ book.get_percentage_sf_votes }}%);
-                </span>
-                <br><br>
+
+            <tr style="border-bottom: 1px white solid">
+                <td><img src="/static/images/sf_book_cover.jpg" height="100px"></td>
+
+                <td style="text-align:center; padding-top:10px; 
+                vertical-align:middle">
+                    <span style="font-style: italic">{{ book.title }}</span>, {{ book.author }}
+                </td>
+
+                <td style="text-align:center; padding-top:10px;
+                vertical-align:middle">
+                    <a href="vote_sf/{{book.id}}" class="btn btn-success" role="button"> Vote SF </a>
+                </td>
+
+                <td style="text-align:center; padding-top:10px;
+                vertical-align:middle">
+                    <a href="vote_f/{{book.id}}" class="btn btn-info" role="button"> Vote F </a>
+                </td>
+
+                <td style="text-align:right;color:#00bc8c; width:100px; 
+                vertical-align:middle">
+                    {{ book.votes_sf }}<br>({{ book.get_percentage_sf_votes }}%)
+                </td>
+
+                <td></td>
+
+                <td style="text-align:right;color:#217dbb; width:100px;
+                vertical-align:middle">
+                    {{ book.votes_f }}<br>({{ book.get_percentage_f_votes }}%)
+                </td>
+            </tr>
             {% endfor %}
-        </div>
+        </tbody>
+    </table>
+</div>
     </div>
 {% endblock %}

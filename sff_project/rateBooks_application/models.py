@@ -12,8 +12,8 @@ class Book(models.Model):
     author  = models.CharField(max_length=255, blank=False, null=False)
 
     # number of votes in each category
-    votes_sf    = models.IntegerField(null=True)
-    votes_f     = models.IntegerField(null=True)
+    votes_sf    = models.IntegerField(null=True, editable=False, default=0)
+    votes_f     = models.IntegerField(null=True, editable=False, default=0)
 
     ###########################################################################
     # "I would opt for the 0..1 range simply because if you store e.g. 20% as
@@ -50,12 +50,21 @@ class Book(models.Model):
         """ Return percentage of fantasy votes as a float between 0 and 100,
             to 1 decimal places. """
 
-        ratio = float(self.votes_f)/(self.votes_f + self.votes_sf)
-        return round(ratio * 100, 1)
+        print '****'*100
+        # avoid dividing by zero
+        if self.votes_f + self.votes_sf == 0:
+            return 0
+        else:
+            ratio = float(self.votes_f)/(self.votes_f + self.votes_sf)
+            return round(ratio * 100, 1)
 
     def get_percentage_sf_votes(self):
         """ Return percentage of science fiction votes as a float between 0 and 100,
             to 1 decimal places. """
 
-        ratio = float(self.votes_sf)/(self.votes_f + self.votes_sf)
-        return round(ratio * 100, 1)
+        # avoid dividing by zero
+        if self.votes_f + self.votes_sf == 0:
+            return 0
+        else:
+            ratio = float(self.votes_sf)/(self.votes_f + self.votes_sf)
+            return round(ratio * 100, 1)
