@@ -127,6 +127,9 @@ SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 # Inactive users can be redirected to a different page if this setting is defined:
 SOCIAL_AUTH_INACTIVE_USER_URL = '...'
 
+# the full email address as the username:
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+
 ###############################################################################
 # Django Suit
 ###############################################################################
@@ -160,13 +163,15 @@ SUIT_CONFIG = {
     'LIST_PER_PAGE': 15
 }
 
-# necessary for django suit
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
 
+
+###############################################################################
 # Debug-toolbar settings
+###############################################################################
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.versions.VersionsPanel',
     'debug_toolbar.panels.timer.TimerPanel',
@@ -208,7 +213,9 @@ DATABASES = {
     }
 }
 
+###############################################################################
 # Internationalization
+###############################################################################
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
@@ -222,7 +229,9 @@ USE_L10N = True
 USE_TZ = True
 
 
+###############################################################################
 # Static files (CSS, JavaScript, Images)
+###############################################################################
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'

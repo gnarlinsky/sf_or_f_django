@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     #   http://www.webforefront.com/django/accessurlparamsviewmethods.html
     url(r'^vote_sf/(?P<book_id>\d+)/$', rateBooks_application.views.vote_sf),
     url(r'^vote_f/(?P<book_id>\d+)/$', rateBooks_application.views.vote_f),
+    url(r'', include('social_auth.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
