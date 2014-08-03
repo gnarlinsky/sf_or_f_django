@@ -95,8 +95,8 @@ AUTHENTICATION_BACKENDS = (
 #ORKUT_CONSUMER_SECRET        = ''
 GOOGLE_CONSUMER_KEY          = ''
 GOOGLE_CONSUMER_SECRET       = ''
-GOOGLE_OAUTH2_CLIENT_ID      = ''
-GOOGLE_OAUTH2_CLIENT_SECRET  = ''
+GOOGLE_OAUTH2_CLIENT_ID      = '600602411164-k0m4kl0fb3vmjkdaeam99lvci819smgu.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET  = 'V-NsJaXr1k-Y1y7EtMSnGi8r'
 #FOURSQUARE_CONSUMER_KEY      = ''
 #FOURSQUARE_CONSUMER_SECRET   = ''
 #VK_APP_ID                    = ''
@@ -111,7 +111,8 @@ GOOGLE_OAUTH2_CLIENT_SECRET  = ''
 #READABILITY_CONSUMER_SECRET  = ''
 
 LOGIN_URL          = '/login-form/'
-LOGIN_REDIRECT_URL = '/logged-in/'
+#LOGIN_REDIRECT_URL = '/logged-in/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL    = '/login-error/'
 
 # A different URL could be defined for newly registered users, newly
@@ -121,14 +122,17 @@ LOGIN_ERROR_URL    = '/login-error/'
 #SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/account-disconnected-redirect-url/'
 
 # Configure authentication and association complete URL names to avoid possible clashes:
-SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
-SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+#SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
+#SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 
 # Inactive users can be redirected to a different page if this setting is defined:
 SOCIAL_AUTH_INACTIVE_USER_URL = '...'
 
 # the full email address as the username:
 SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+
+
+SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
 ###############################################################################
 # Django Suit

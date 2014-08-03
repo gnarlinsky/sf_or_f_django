@@ -23,6 +23,9 @@ urlpatterns = patterns('',
     url(r'^vote_sf/(?P<book_id>\d+)/$', rateBooks_application.views.vote_sf),
     url(r'^vote_f/(?P<book_id>\d+)/$', rateBooks_application.views.vote_f),
     url(r'', include('social_auth.urls')),
+    url(r'^logout/$', 'django.contrib.auth.views.logout',
+                          {'next_page': '/'}
+       ),
 )
 
 urlpatterns += staticfiles_urlpatterns()

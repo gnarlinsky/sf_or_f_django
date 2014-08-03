@@ -12,10 +12,6 @@
   </head>
 
   <body>
-
-
-
-
         <nav role="navigation" class="navbar navbar-default navbar-fixed-top"
         style="padding:5px">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -52,7 +48,16 @@
                 <ul class="nav navbar-nav navbar-right"
                 style="margin-right:20px;">
                     <li>
-                        <a href="{% url 'socialauth_begin' 'google-oauth2' %}">Log in with Google</a>
+                        {% if user.is_authenticated %}
+                            <span style="color: white">
+                            {{ user }}
+                            </span>
+                            <span style="padding-left:10px">
+                            <a href="logout">Log out</a>
+                            </span>
+                        {% else %}
+                            <a href="{% url 'socialauth_begin' 'google-oauth2' %}">Log in with Google</a>
+                        {% endif %}
                     </li>
                 </ul>
             </div>
