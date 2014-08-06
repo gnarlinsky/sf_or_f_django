@@ -8,6 +8,7 @@
 * see email for more stuff
 * tweak debug-toolbar settings in settings.py
 * tweak django-suit settings in settings.py
+* check what happens with overly long string in edit_book (like > 255 chars)
 
 
 Some useful stuff/documentation/tutorial fodder
