@@ -1,17 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div style="text-align: center">
-        <h1>Add a book</h1>
+    <div style="text-align: left; margin: auto">
+        <h1 style="text-align: center">Add a book</h1>
 
-        <form action="{% url "books-new" %}" method="POST" class="form">
-            {% csrf_token %}
-            <ul style="list-style-type: none; text-align:right; 
-                       margin-right:200px">
-                {{ form.as_ul }}
-            </ul>
-            <input id = "save_book" type="submit" value="Save" />
-        </form>
-
+<form action="{% url "books-new" %}" method="POST" class="well" style="width:450px; margin:auto">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-group" style="clear:both">
+        <!--
+        <div class="control-group {%if field.errors %}error{%endif%}" >
+            -->
+            <div>
+                <div>
+                    <label for="{{ field.id_for_label}}"
+                    style="margin-top:10px">{{ field.label }}</label>
+                </div>
+                <span style="float:left">
+                    <input type="text" class="form-control" name="{{ field.html_name }}" id="{{ field.id_for_label }}" style="width:255px" >
+                </span>
+                <span style="color:#d62014; float:right; margin-top:10px">
+                    {{ field.errors.as_text }}
+                </span>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="form-group" style="clear:both; margin-top:20px">
+        <input id="save_book" type="submit" class="btn" style="margin-top:20px" value="Create" />
     </div>
+</form>
+</div>
+
+
+
+TODO: why isn't it complaining when too long strings, e.g. <br>
+abah blah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blah lah blalah blah lah blah lah blah lah blalah blah lah blah lah blah lah blah h h 
+</br>
+(> 255 chars)
 {% endblock %}

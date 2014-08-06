@@ -1,71 +1,95 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load book_filters %}
 
 {% block content %}
-
-
-<!-- TODO: NOPE. Just use Bootstrap's Flexible layout!!!!!!!! -->
-<div style="margin-top:20px">
-<div style="width: 40%;  float:left;">
-    <img src="{% static 'images/main.jpg' %}" width="400px">
-</div>
-<div style="width: 60%;  float:right; padding:50px;">
-<h1 style="font-weight:bold">Hate blah blah blah?</h1>
-<h2>Let's crowdsource blah blah.</h2>
+<div style="margin-left:auto; margin-right:auto; width:700px; height:250px">
+    <span style="text-align:center; float:left">
+        <img src="{% static 'images/main.jpg' %}" width="400px">
+    </span>
+    <span style="width:400px; text-align:right">
+        <h3 style="font-weight:bold">Hate blah blah blah?</h3>
+        <h4>Let's crowdsource blah blah.<br>and also  blah blah b blah blah b blah blah b blah blah bblah blah blah </h4>
+    </span>
 </div>
 
-<div style="clear: both">
+
+<div style="clear: both; border: 2px #333 solid;border-radius: 20px; margin-bottom:10px">
     <table class="table">
         <thead style="border-bottom:0px">
             <tr style="border-bottom:0px">
-                <th style="border-bottom:1px white solid"></th>
-                <th style="border-bottom:1px white solid"></th>
-                <th style="border-bottom:1px white solid"></th>
-                <th style="border-bottom:1px white solid"></th>
+                <th style="border-bottom:1px white solid; width:150px"></th>
+                <th style="border-bottom:1px white solid; width:150px"></th>
+                {% if user.is_authenticated %}
+                <th style="border-bottom:1px white solid; width:150px"></th>
+                <th style="border-bottom:1px white solid; width:150px"></th>
+                {% endif %}
                 <th style="text-align:center;color:#d62014; border-bottom:1px
-                #d62014 solid; width:100px">SF Votes</th>
+                #d62014 solid; width:150px">Science Fiction<br>Votes</th>
                 <th style="border-bottom:1px white solid"></th>
-                <th style="text-align:center;color:#000; border-bottom:1px
-                #000 solid; width:100px">Fantasy Votes</th>
+                <th style="text-align:center;color:#000; border-bottom:1px #000
+                solid; width:150px">Fantasy<br>Votes</th>
+                <th style="border-bottom:1px white solid"></th>
             </tr>
         </thead>
         <tbody style="border-top:0px">
             {% for book in object_list %}
 
             <tr style="border-top:0px">
-                <td><img src="/static/images/Hetzel_front_cover.jpg" height="100px"></td>
+                <td style="vertical-align:middle; width:200px; text-align:
+                center">
+                <img src="/static/images/Hetzel_front_cover.jpg" width="100px">
+                </td>
 
                 <td style="text-align:center; padding-top:10px; 
-                vertical-align:middle; color:#333; font-weight: bold">
+                vertical-align:middle; color:#333; font-weight: bold;
+                font-size:20px">
                     <span style="font-style: italic;">{{ book.title }}</span>, {{ book.author }}
                 </td>
 
-                <td style="text-align:center; padding-top:10px;
-                vertical-align:middle;">
-                    <a href="vote_sf/{{book.id}}" class="btn btn-success"
-                    role="button"
-                    style=" background-color: #d62014; border-color: #d62014;">
-                    Vote SF </a>
+
+                <td style="text-align:center; padding-top:10px; vertical-align:middle;">
+                {% if user.is_authenticated %}
+                {% if user.id|user_voted_sf_for_book:book.id %}
+                            <a href="vote_sf/{{book.id}}" class="btn
+                            btn-success" role="button" style="width:100px; height:50px; background-color: #d62014; border-color: #d62014;" disabled="disabled"> Vote SF 
+                                <img src="/static/images/check.png" height="25px">
+                            </a>
+                        {% else %}
+                            <a href="vote_sf/{{book.id}}" class="btn
+                            btn-success" role="button" style="width:100px; height:50px; background-color: #d62014; border-color: #d62014;"> Vote SF </a>
+                        {% endif %}
+                        {% endif %}
                 </td>
 
-                <td style="text-align:center; padding-top:10px;
-                vertical-align:middle">
-                    <a href="vote_f/{{book.id}}" class="btn btn-info" role="button"
-                    style="background-color: #000; border-color: #000;">
-                    Vote F </a>
+                <td style="text-align:center; padding-top:10px; vertical-align:middle">
+
+
+                {% if user.is_authenticated %}
+                    {% if user.id|user_voted_f_for_book:book.id  %}
+                                <a href="vote_f/{{book.id}}" class="btn btn-info"
+                                role="button" style="width:100px; height:50px; background-color: #000; border-color: #000;" disabled="disabled"> Vote F &nbsp;&nbsp; 
+                                    <img src="/static/images/check.png" height="25px">
+                                </a>
+                        {% else %}
+                            <a href="vote_f/{{book.id}}" class="btn btn-info"
+                        role="button" style="width:100px; height:50px; background-color: #000; border-color: #000;"> Vote F </a>
+                        {% endif %}
+                        {% endif %}
                 </td>
 
                 <td style="text-align:center;color:#d62014; width:100px; 
-                vertical-align:middle">
-                    {{ book.votes_sf }}<br>({{ book.get_percentage_sf_votes }}%)
+                vertical-align:middle"> {{ book.get_num_sf_votes }}<br>({{ book.get_percentage_sf_votes }}%)
                 </td>
 
                 <td></td>
 
-                <td style="text-align:center;color:#000; width:100px;
-                vertical-align:middle">
-                    {{ book.votes_f }}<br>({{ book.get_percentage_f_votes }}%)
+                <td style="text-align:center;color:#000; width:100px; vertical-align:middle">
+                    {{ book.get_num_f_votes }}<br>({{ book.get_percentage_f_votes }}%)
                 </td>
+
+
+
             </tr>
             {% endfor %}
         </tbody>
