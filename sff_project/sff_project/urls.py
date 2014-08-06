@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth.decorators import login_required
 
 import rateBooks_application.views
 
@@ -13,7 +14,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^new/',
-        rateBooks_application.views.CreateBookView.as_view(),
+        login_required(rateBooks_application.views.CreateBookView.as_view()),
         name='books-new',),
     url(r'^$',
         rateBooks_application.views.ListBookView.as_view(),
