@@ -4,7 +4,8 @@ from django.views.generic import View
 from django.views.generic import ListView
 from django.views.generic import CreateView
 from django.core.urlresolvers import reverse
-from rateBooks_application.models import Book
+from django.contrib.auth.decorators import login_required
+from rateBooks_application.models import Book, Vote
 
 # TODO: http://effectivedjango.com/tutorial/views.html,
 #       see Class Based Views vs methods
@@ -20,19 +21,57 @@ from rateBooks_application.models import Book
 #
 # TODO: don't reload everything! Way more asynchronous....
 
+@login_required
 def vote_sf(request, book_id):
-   """ Retrieve the book with this id and increment its votes """
-   book = Book.objects.get(id=book_id)
-   book.votes_sf += 1
-   book.save()
-   return HttpResponseRedirect('/')
+    """ Retrieve the book with this id and increment its votes """
+    #book = Book.objects.get(id=book_id)
+    #book.votes_sf += 1
+    #book.save()
 
+    # Get the logged-in user and associate with this vote
+    # If this vote exists (if user has already voted for this book), change the
+    # existing vote. Otherwise, create a new one.
+    user = request.user
+    book = Book.objects.get(id=book_id)
+    # TODO: best practices on how to get the actual User object from the
+    #   queryset (indexing? something else?)
+    try:
+        vote = Vote.objects.get(book=book, user=user)
+    except Vote.DoesNotExist:
+        vote = Vote.objects.create(book=book, user=user)
+    vote.vote = Vote.SCIENCE_FICTION
+    vote.save()
+
+    return HttpResponseRedirect('/')
+
+@login_required
 def vote_f(request, book_id):
-   """ Retrieve the book with this id and increment its votes """
-   book = Book.objects.get(id=book_id)
-   book.votes_f += 1
-   book.save()
-   return HttpResponseRedirect('/')
+    """ Retrieve the book with this id and increment its votes """
+    #book = Book.objects.get(id=book_id)
+    #book.votes_f += 1
+    #book.save()
+
+    # TODO: so would it be better to just have votes in the Votes model and add
+    # them up for each book? I.e. above you would actuall not do book.votes_f,
+    # do blah.get_votesblah.  So take care of the above....
+
+    # No! you'd have to do more complicated stuff in order to have book.votes_f,
+    # etc. 
+
+    # Get the logged-in user and associate with this vote
+    # If this vote exists (if user has already voted for this book), change the
+    # existing vote. Otherwise, create a new one.
+    user = request.user
+    book = Book.objects.get(id=book_id)
+    try:
+        vote = Vote.objects.get(book=book, user=user)
+    except Vote.DoesNotExist:
+        vote = Vote.objects.create(book=book, user=user)
+    vote.vote = Vote.FANTASY
+    vote.save()
+
+
+    return HttpResponseRedirect('/')
 
 class ListBookView(ListView):
     """ List all Books in the database. """
