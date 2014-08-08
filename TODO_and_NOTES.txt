@@ -9,6 +9,10 @@
 * tweak debug-toolbar settings in settings.py
 * tweak django-suit settings in settings.py
 * check what happens with overly long string in edit_book (like > 255 chars)
+* testing + coverage
+* styles consolidation
+* fuller stack
+* reload part of page only, e.g. http://www.tangowithdjango.com/book/chapters/ajax.html
 
 
 Some useful stuff/documentation/tutorial fodder
