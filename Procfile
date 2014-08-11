@@ -1,1 +1,1 @@
-web: python manage.py run_gunicorn -b 0.0.0.0:$PORT
+web: cd sff_project; gunicorn sff_project.wsgi --log-file -
