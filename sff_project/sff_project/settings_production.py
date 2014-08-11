@@ -251,4 +251,4 @@ STATIC_URL = '/static/'
 # heroku - parse the values of the DATABASE_URL environment variable and
 # convert them to something Django can understand.
 import dj_database_url
-DATABASES['default'] =  {'default': dj_database_url.config()} 
+DATABASES =  {'default': dj_database_url.config()}
