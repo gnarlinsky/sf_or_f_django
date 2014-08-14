@@ -3,7 +3,8 @@
 * Design documentation
 * Developer documentation
 * shell_plus?
-* start getting the documentation below into Sphinx
+* start getting the documentation below, and more, into Sphinx
+    * automate documentation generation
 * create Issues
 * see email for more stuff
 * tweak debug-toolbar settings in settings.py
@@ -13,6 +14,16 @@
 * styles consolidation
 * fuller stack
 * reload part of page only, e.g. http://www.tangowithdjango.com/book/chapters/ajax.html
+* user account/management, e.g. user can view history, etc.
+* make look pretty
+* admin
+* make go fast
+* upload pic as well
+* automate some kind of watch for inappropriate pictures or invalid books, etc.
+* add movies and TV shows
+* visualization -- graphs, etc.
+* logs
+* sort the main table
 
 
 Some useful stuff/documentation/tutorial fodder
