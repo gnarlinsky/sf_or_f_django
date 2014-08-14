@@ -24,6 +24,8 @@
 * visualization -- graphs, etc.
 * logs
 * sort the main table
+* Before adding a book, verify that it's in the Library of Congress database (and if it's classified as Science Fiction or Fantasy?)
+* Users should not be required to log in to add a book. They can just use a capcha. However, the book won't be added until the Library of Congress check.
 
 
 Some useful stuff/documentation/tutorial fodder
